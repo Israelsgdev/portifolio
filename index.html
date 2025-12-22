@@ -475,6 +475,36 @@
         });
 
     </script>
+    <script>
+(function () {
+    // Data inicial: Junho de 2020 (mês começa em 0)
+    const inicio = new Date(2020, 5, 1);
+    const hoje = new Date();
+
+    let anos = hoje.getFullYear() - inicio.getFullYear();
+    let meses = hoje.getMonth() - inicio.getMonth();
+
+    // Ajuste se o mês atual for menor que o mês inicial
+    if (meses < 0) {
+        anos--;
+        meses += 12;
+    }
+
+    // Texto final
+    let texto = '';
+
+    if (anos > 0) {
+        texto += `${anos} ano${anos > 1 ? 's' : ''}`;
+    }
+
+    if (meses > 0) {
+        texto += `${anos > 0 ? ' e ' : ''}${meses} mes${meses > 1 ? 'es' : ''}`;
+    }
+
+    document.getElementById('tempo-experiencia').textContent = texto;
+})();
+</script>
+
     <script src="script.js"></script>
 </body>
 
