@@ -5,12 +5,14 @@ console.log("Portfólio carregado com sucesso!");
 const mobileToggle = document.getElementById('mobileToggle');
 const navMenu = document.getElementById('navMenu');
 
-mobileToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    mobileToggle.innerHTML = navMenu.classList.contains('active')
-        ? '<i class="fas fa-times"></i>'
-        : '<i class="fas fa-bars"></i>';
-});
+if (mobileToggle && navMenu) {
+    mobileToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        mobileToggle.innerHTML = navMenu.classList.contains('active')
+            ? '<i class="fas fa-times"></i>'
+            : '<i class="fas fa-bars"></i>';
+    });
+}
 
 // Close mobile menu when clicking a link
 document.querySelectorAll('nav a').forEach(link => {
@@ -38,13 +40,61 @@ const fadeInOnScroll = () => {
 window.addEventListener('scroll', fadeInOnScroll);
 window.addEventListener('load', fadeInOnScroll);
 
+// Scrollspy: destaca no nav a seção visível
+const navLinks = document.querySelectorAll('#navMenu a');
+const spySections = [];
+
+navLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    // Considera links âncora da página atual (ex: "#about")
+    if (href.startsWith('#') && href.length > 1) {
+        const section = document.querySelector(href);
+        if (section) {
+            spySections.push({ section, link });
+        }
+    } else {
+        // Marca link de outra página como ativo quando é a página atual (ex: projetos.html)
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        if (href.split('#')[0] === currentPage) {
+            link.classList.add('active');
+        }
+    }
+});
+
+const highlightNav = () => {
+    if (spySections.length === 0) return;
+
+    const scrollPos = window.scrollY + 120; // compensa o header fixo
+    let current = null;
+
+    spySections.forEach(item => {
+        if (item.section.offsetTop <= scrollPos) {
+            current = item;
+        }
+    });
+
+    // No fim da página, ativa a última seção
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 5) {
+        current = spySections[spySections.length - 1];
+    }
+
+    spySections.forEach(item => {
+        item.link.classList.toggle('active', item === current);
+    });
+};
+
+window.addEventListener('scroll', highlightNav);
+window.addEventListener('load', highlightNav);
+
 // Form submission (demo)
 const contactForm = document.getElementById('contactForm');
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    alert('Obrigado pela mensagem! Em breve entrarei em contato. (Esta é uma demonstração - em um site real, esta função enviaria um email)');
-    contactForm.reset();
-});
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Obrigado pela mensagem! Em breve entrarei em contato. (Esta é uma demonstração - em um site real, esta função enviaria um email)');
+        contactForm.reset();
+    });
+}
 
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -89,6 +139,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         texto += `${anos > 0 ? ' e ' : ''}${meses} mes${meses > 1 ? 'es' : ''}`;
     }
 
-    document.getElementById('tempo-experiencia').textContent = texto;
+    const tempoEl = document.getElementById('tempo-experiencia');
+    if (tempoEl) {
+        tempoEl.textContent = texto;
+    }
 })();
 
