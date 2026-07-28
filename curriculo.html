@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículo - Israel Santana</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0e7490;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            color: var(--dark);
+            font-size: 10.5pt;
+            line-height: 1.55;
+            background: #f1f5f9;
+        }
+
+        .page {
+            max-width: 210mm;
+            min-height: 297mm;
+            margin: 20px auto;
+            background: #fff;
+            padding: 16mm 18mm;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Cabeçalho */
+        header {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+        }
+
+        .photo {
+            flex-shrink: 0;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            color: var(--gray);
+            font-size: 9.5pt;
+            text-align: center;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .header-info {
+            flex: 1;
+        }
+
+        h1 {
+            font-size: 22pt;
+            font-weight: 700;
+            color: var(--dark);
+            letter-spacing: 0.5px;
+        }
+
+        .headline {
+            font-size: 12pt;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .contact-line {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 18px;
+            font-size: 9.5pt;
+            color: var(--gray);
+        }
+
+        .contact-line a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Seções */
+        h2 {
+            font-size: 12.5pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--light-gray);
+            padding-bottom: 4px;
+            margin: 22px 0 12px;
+        }
+
+        .resumo p {
+            text-align: justify;
+        }
+
+        /* Experiência */
+        .job {
+            margin-bottom: 16px;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+        }
+
+        .job-title {
+            font-weight: 700;
+            font-size: 11pt;
+        }
+
+        .job-company {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .job-date {
+            color: var(--gray);
+            font-size: 9.5pt;
+            font-style: italic;
+        }
+
+        .job ul {
+            margin: 5px 0 0 18px;
+        }
+
+        .job li {
+            margin-bottom: 2px;
+        }
+
+        /* Habilidades */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 28px;
+        }
+
+        .skill-group strong {
+            color: var(--dark);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .skill-group span {
+            color: var(--gray);
+            font-size: 9.5pt;
+        }
+
+        /* Projetos */
+        .project {
+            margin-bottom: 12px;
+        }
+
+        .project strong {
+            color: var(--dark);
+        }
+
+        .project .tech {
+            font-family: 'Fira Code', monospace;
+            color: var(--primary);
+            font-size: 9.5pt;
+            font-weight: 500;
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0 24px;
+        }
+
+        /* Lista de projetos (só nomes) */
+        .project-list {
+            columns: 3;
+            column-gap: 28px;
+            list-style: none;
+            font-size: 9.5pt;
+            color: var(--gray);
+        }
+
+        .project-list li {
+            padding: 3px 0;
+            break-inside: avoid;
+        }
+
+        .project-list li::before {
+            content: '▸ ';
+            color: var(--primary);
+        }
+
+        /* Impressão */
+        @media print {
+            body {
+                background: #fff;
+            }
+
+            .page {
+                margin: 0;
+                box-shadow: none;
+                max-width: none;
+                min-height: auto;
+                padding: 12mm 14mm;
+            }
+
+            .page + .page {
+                page-break-before: always;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            h2 {
+                page-break-after: avoid;
+            }
+
+            header {
+                page-break-inside: avoid;
+            }
+
+            .job,
+            .project,
+            .skill-group {
+                page-break-inside: avoid;
+            }
+        }
+
+        .print-hint {
+            max-width: 210mm;
+            margin: 15px auto 0;
+            background: #fef9c3;
+            border: 1px solid #fde047;
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 10pt;
+            color: #713f12;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="print-hint no-print">
+        💡 <strong>Para gerar o PDF:</strong> pressione <kbd>Ctrl+P</kbd>, escolha "Salvar como PDF",
+        papel A4, margens padrão e desative "Cabeçalhos e rodapés".
+    </div>
+
+    <div class="page">
+        <!-- Cabeçalho -->
+        <header>
+            <div class="photo">
+                <!-- Substitua o span abaixo pela sua foto:
+                     <img src="foto.jpg" alt="Israel Santana"> -->
+                 <img src="foto.jpg" alt="Israel Santana">
+            </div>
+            <div class="header-info">
+                <h1>Israel Santana</h1>
+                <div class="headline">Desenvolvedor Python | Full Stack | Business Intelligence | Data Analytics</div>
+                <div class="contact-line">
+                    <span>📍 Bahia - Brasil</span>
+                    <span>📧 israel_kle@hotmail.com</span>
+                    <span>📱 +55 (77) 98154-9456</span>
+                    <a href="https://github.com/Israelsgdev">github.com/Israelsgdev</a>
+                    <a href="https://www.linkedin.com/in/israel-sang/">linkedin.com/in/israel-sang</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Resumo -->
+        <section class="resumo">
+            <h2>Resumo Profissional</h2>
+            <p>
+                Desenvolvedor Python com sólida experiência em sistemas corporativos, integração com bancos de dados
+                relacionais e desenvolvimento de soluções orientadas a dados. Mantenho mais de 50 aplicações em
+                produção em servidor Linux, incluindo sistemas de gestão, automações financeiras (PIX, DDA), APIs REST
+                e integrações com ERP. Forte experiência com Oracle (PL/SQL) e MySQL, dashboards em Power BI e
+                desenvolvimento web Full Stack. Busco atuar como Desenvolvedor Python, contribuindo com soluções
+                escaláveis, integrações via API e evolução tecnológica da empresa.
+            </p>
+        </section>
+
+        <!-- Experiência -->
+        <section>
+            <h2>Experiência Profissional</h2>
+
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-title">Analista de Sistemas de TI — <span class="job-company">Grupo Valdir
+                            Saraiva</span></span>
+                    <span class="job-date">Set/2020 – Atual</span>
+                </div>
+                <ul>
+                    <li>Desenvolvimento e manutenção de <strong>50+ aplicações em produção</strong> (Python/Flask)
+                        em servidor Linux, atendendo comercial, contábil, logística, financeiro e diretoria</li>
+                    <li>Automações financeiras: cobrança automática de clientes, PIX integrado à API do Santander e
+                        processamento de títulos DDA</li>
+                    <li>Criação e manutenção de dashboards em Power BI integrados a bancos Oracle e MySQL</li>
+                    <li>Desenvolvimento de APIs REST e integrações com ERP Consinco e sistemas legados
+                        (migração Firebird → Oracle)</li>
+                    <li>Implementação de relatórios e indicadores de desempenho financeiro, comercial e logístico</li>
+                    <li>Participação no ciclo completo de desenvolvimento: análise, implementação, testes e entrega</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-title">Analista de Suporte Computacional — <span
+                            class="job-company">CTIS</span></span>
+                    <span class="job-date">Jun/2019 – Set/2019</span>
+                </div>
+                <ul>
+                    <li>Suporte técnico em ambientes corporativos e manutenção de sistemas e infraestrutura</li>
+                    <li>Apoio à melhoria de processos internos e resolução de problemas técnicos</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Habilidades -->
+        <section>
+            <h2>Habilidades Técnicas</h2>
+            <div class="skills-grid">
+                <div class="skill-group">
+                    <strong>Linguagens & Backend</strong>
+                    <span>Python (Flask/Django), SQL, PL/SQL, JavaScript, HTML, CSS</span>
+                </div>
+                <div class="skill-group">
+                    <strong>Banco de Dados</strong>
+                    <span>Oracle, MySQL, Firebird — consultas avançadas, views, otimização</span>
+                </div>
+                <div class="skill-group">
+                    <strong>Business Intelligence</strong>
+                    <span>Power BI, Targit BI, modelagem de dados, indicadores e dashboards</span>
+                </div>
+                <div class="skill-group">
+                    <strong>APIs & Integrações</strong>
+                    <span>APIs REST, JSON/HTTP, integração entre sistemas e ERP</span>
+                </div>
+                <div class="skill-group">
+                    <strong>Infra & Ferramentas</strong>
+                    <span>Linux (Ubuntu), PM2, Git, Docker (básico), Métodos Ágeis</span>
+                </div>
+                <div class="skill-group">
+                    <strong>IA & Automação</strong>
+                    <span>API OpenAI, noções de LangChain, chatbots, automações inteligentes</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Página 2: Projetos -->
+    <div class="page">
+        <!-- Projetos -->
+        <section>
+            <h2>Projetos em Destaque</h2>
+            <div class="two-col">
+                <div class="project">
+                    <strong>Sistemas de Gestão Corporativa</strong> — gerenciadores para comercial, contábil,
+                    controladoria, diretoria, e-commerce, logística e obras.<br>
+                    <span class="tech">Python · Flask · Oracle/MySQL</span>
+                </div>
+                <div class="project">
+                    <strong>Automação Financeira PIX/DDA</strong> — cobrança automática com PIX integrado à API do
+                    Santander e conciliação de títulos DDA.<br>
+                    <span class="tech">Python · API REST · Oracle</span>
+                </div>
+                <div class="project">
+                    <strong>Plataforma Logística</strong> — controle de cargas, checklists digitais, ranking de
+                    motoristas, lead time e indicadores operacionais.<br>
+                    <span class="tech">Python · Flask · Power BI</span>
+                </div>
+                <div class="project">
+                    <strong>Integrações & APIs</strong> — API de clientes, sincronização com ERP Consinco e migração
+                    de dados Firebird → Oracle.<br>
+                    <span class="tech">Python · API REST · Oracle · Firebird</span>
+                </div>
+                <div class="project">
+                    <strong>BI Corporativo</strong> — dashboards de fluxo de caixa, estoque e indicadores financeiros
+                    integrados a bancos relacionais.<br>
+                    <span class="tech">Power BI · Targit BI · SQL</span>
+                </div>
+                <div class="project">
+                    <strong>Chatbot com IA</strong> — chatbot inteligente com respostas contextualizadas via API da
+                    OpenAI e interface web.<br>
+                    <span class="tech">Python · OpenAI API · Flask</span>
+                </div>
+                <div class="project">
+                    <strong>Campanhas Promocionais Interativas</strong> — sistema de cupons, copa varejo, jogo da
+                    memória e campanhas de aniversário com painéis de resultado.<br>
+                    <span class="tech">Python · Flask · JavaScript · Oracle</span>
+                </div>
+                <div class="project">
+                    <strong>Leitores de Código de Barras e QR Code</strong> — aplicações web com captura via câmera
+                    e processamento em tempo real.<br>
+                    <span class="tech">Python · Flask · JavaScript</span>
+                </div>
+                <div class="project">
+                    <strong>Automação Linux para Deploy</strong> — automação de inicialização e monitoramento de
+                    aplicações Flask em servidor Linux com PM2 e monitoramento de logs.<br>
+                    <span class="tech">Ubuntu Linux · Bash · PM2 · Flask</span>
+                </div>
+                <div class="project">
+                    <strong>Desenvolvimento Web & Sites Institucionais</strong> — sites WordPress com funcionalidades
+                    avançadas, landing pages e sistemas web personalizados.<br>
+                    <span class="tech">WordPress · PHP · JavaScript · Bootstrap</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lista completa de aplicativos -->
+        <section>
+            <h2>Aplicativos em Produção</h2>
+            <ul class="project-list">
+                <li>Gerenciador Comercial</li>
+                <li>Gerenciador Contábil</li>
+                <li>Gerenciador Controladoria</li>
+                <li>Gerenciador Diretoria</li>
+                <li>Gerenciador E-commerce</li>
+                <li>Gerenciador Logística</li>
+                <li>Gerenciador de Obras</li>
+                <li>Gerenciador Saldo Banco</li>
+                <li>Projeto Controladoria</li>
+                <li>Sistema Financeiro</li>
+                <li>Aviso de Motorista Atrasado</li>
+                <li>Cargas - Recebimento</li>
+                <li>Cargas - Tratativas</li>
+                <li>Checklists Logística</li>
+                <li>Coleta de Pedidos</li>
+                <li>Comunicação Motoristas</li>
+                <li>Horas Motoristas</li>
+                <li>Logística - Devolução</li>
+                <li>Ranking de Motoristas</li>
+                <li>Tempo Médio Logística</li>
+                <li>Lead Time</li>
+                <li>Controlador de Catraca</li>
+                <li>Depósito - Correção</li>
+                <li>Cobrança Automática de Clientes</li>
+                <li>PIX Automático - Pedidos</li>
+                <li>PIX Santander Automático</li>
+                <li>Títulos DDA</li>
+                <li>Compras à Vista</li>
+                <li>Compras - Pedido a Fornecedor</li>
+                <li>Consulta de Clientes</li>
+                <li>Consulta de Produtos</li>
+                <li>Consulta de Representantes</li>
+                <li>API Clientes C5</li>
+                <li>Integra Atributo</li>
+                <li>Integrador OS - Sinc Consinco</li>
+                <li>Firebird → Oracle Transfer</li>
+                <li>Hub Dimacol</li>
+                <li>VerGM</li>
+                <li>Campanha de Aniversário</li>
+                <li>Campanhas</li>
+                <li>Campanha Poço de Pedra</li>
+                <li>Copa Varejo</li>
+                <li>Monitor Open House</li>
+                <li>PDP Brindes</li>
+                <li>PDP Open House</li>
+                <li>Palace Promo Apps</li>
+                <li>Jogo da Memória Poço de Pedra</li>
+                <li>Agenda Dimacol</li>
+                <li>Agendas de Salas</li>
+                <li>Bitplaca</li>
+                <li>BombaNet</li>
+                <li>Impressor de Etiquetas</li>
+                <li>Scan QR</li>
+                <li>Manutenção TI</li>
+                <li>Monitor Log</li>
+                <li>Power BI</li>
+                <li>Relatório RCA</li>
+                <li>XMail</li>
+            </ul>
+        </section>
+    </div>
+</body>
+
+</html>
